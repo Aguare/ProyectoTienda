@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUIAdmin;
+
+import PanelesConsulta.PanelProducto;
 
 /**
  *
@@ -16,6 +13,9 @@ public class inventarioBuscar extends javax.swing.JPanel {
      */
     public inventarioBuscar() {
         initComponents();
+        PanelProducto nuevo1 = new PanelProducto();
+        nuevo1.setBounds(0, 0, 932, 52);
+        panelBuscarInventario.add(nuevo1);
     }
 
     /**

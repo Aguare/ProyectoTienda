@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUIAdmin;
+
+import PanelesConsulta.PanelPedido;
 
 /**
  *
@@ -16,6 +13,9 @@ public class pedidoBuscar extends javax.swing.JPanel {
      */
     public pedidoBuscar() {
         initComponents();
+        PanelPedido nuevo = new PanelPedido();
+        nuevo.setBounds(0, 0, 932, 52);
+        panelBuscarPedido.add(nuevo);
     }
 
     /**

@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUIAdmin;
+
+import PanelesConsulta.PanelCliente;
 
 /**
  *
@@ -16,6 +13,9 @@ public class clienteBuscar extends javax.swing.JPanel {
      */
     public clienteBuscar() {
         initComponents();
+        PanelCliente nuevo = new PanelCliente();
+        nuevo.setBounds(0, 0, 932, 52);
+        panelBuscar.add(nuevo);
     }
 
     /**
@@ -39,6 +39,7 @@ public class clienteBuscar extends javax.swing.JPanel {
         jLabel34 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
+        panelBuscar = new javax.swing.JPanel();
 
         jLabel18.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel18.setText("INGRESE NIT O NOMBRE DEL CLIENTE:");
@@ -73,6 +74,21 @@ public class clienteBuscar extends javax.swing.JPanel {
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel33.setText("DIRECCION");
         jLabel33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        panelBuscar.setPreferredSize(new java.awt.Dimension(925, 530));
+
+        javax.swing.GroupLayout panelBuscarLayout = new javax.swing.GroupLayout(panelBuscar);
+        panelBuscar.setLayout(panelBuscarLayout);
+        panelBuscarLayout.setHorizontalGroup(
+            panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 931, Short.MAX_VALUE)
+        );
+        panelBuscarLayout.setVerticalGroup(
+            panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 530, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(panelBuscar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -131,7 +147,7 @@ public class clienteBuscar extends javax.swing.JPanel {
                     .addComponent(jLabel33)
                     .addComponent(jLabel34))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -150,5 +166,6 @@ public class clienteBuscar extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField11;
+    private javax.swing.JPanel panelBuscar;
     // End of variables declaration//GEN-END:variables
 }
