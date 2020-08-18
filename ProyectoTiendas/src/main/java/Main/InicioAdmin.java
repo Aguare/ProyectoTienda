@@ -5,6 +5,8 @@ import GUIAdmin.inventarioBuscar;
 import GUIAdmin.pedidoBuscar;
 import GUIAdmin.pedidoNuevo;
 import GUIAdmin.ventasVentas;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JTabbedPane;
 
 /**
@@ -28,13 +30,21 @@ public class InicioAdmin extends javax.swing.JFrame {
      */
     public InicioAdmin() {
         initComponents();
+        cargarVentanas();
+        this.setLocationRelativeTo(null);
+
+        Calendar cal = new GregorianCalendar();
+        String fecha = cal.getTime().toString();
+        menuHora.setText(fecha);
+    }
+
+    private void cargarVentanas() {
         pestaPrincipal.add("Ventas", venta);
         pestaPrincipal.add("Pedido", pedido);
         pedido.add("Nuevo", pNuevo);
         pedido.add("Buscar", pBuscar);
         pestaPrincipal.add("Inventario", iBuscar);
         pestaPrincipal.add("Cliente", cBuscar);
-
     }
 
     /**
@@ -79,13 +89,14 @@ public class InicioAdmin extends javax.swing.JFrame {
         itemTiempoTraslado = new javax.swing.JMenuItem();
         menuAyuda = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        menuHora = new javax.swing.JMenu();
 
         jScrollPane4.setViewportView(jTree1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administración");
         setBackground(new java.awt.Color(66, 66, 66));
+        setFocusCycleRoot(false);
         setLocation(new java.awt.Point(0, 0));
         setLocationByPlatform(true);
         setResizable(false);
@@ -232,10 +243,10 @@ public class InicioAdmin extends javax.swing.JFrame {
 
         barraMenu.add(menuAyuda);
 
-        jMenu2.setText("TIENDA SAN MARCOS 15/08/2020");
-        jMenu2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        barraMenu.add(jMenu2);
+        menuHora.setText("TIENDA SAN MARCOS 15/08/2020");
+        menuHora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuHora.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        barraMenu.add(menuHora);
 
         setJMenuBar(barraMenu);
 
@@ -301,10 +312,8 @@ public class InicioAdmin extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InicioAdmin().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new InicioAdmin().setVisible(true);
         });
     }
 
@@ -327,7 +336,6 @@ public class InicioAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemRegistrarTienda;
     private javax.swing.JMenuItem itemTiempoTraslado;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
@@ -335,6 +343,7 @@ public class InicioAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTree jTree1;
     private javax.swing.JMenu menuAyuda;
+    private javax.swing.JMenu menuHora;
     private javax.swing.JMenu menuOpciones;
     private javax.swing.JMenu menuPedidos;
     private javax.swing.JMenu menuRTienda;

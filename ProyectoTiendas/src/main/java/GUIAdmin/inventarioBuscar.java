@@ -104,6 +104,11 @@ public class inventarioBuscar extends javax.swing.JPanel {
         jScrollPane1.setViewportView(panelBuscarInventario);
 
         jButton1.setText("INGRESAR PRODUCTO");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("NUEVO FABRICANTE");
 
@@ -191,6 +196,11 @@ public class inventarioBuscar extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      RegistrarProducto registrar = new RegistrarProducto();
+      registrar.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

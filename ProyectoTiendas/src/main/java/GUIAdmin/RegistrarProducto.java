@@ -45,7 +45,7 @@ public class RegistrarProducto extends javax.swing.JFrame {
         jLabel41 = new javax.swing.JLabel();
         jTextField18 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel13.setText("CÓDIGO:");
@@ -87,6 +87,11 @@ public class RegistrarProducto extends javax.swing.JFrame {
         jButton1.setText("REGISTRAR");
 
         jButton2.setText("CANCELAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel41.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel41.setText("INFORMACIÓN:");
@@ -204,6 +209,10 @@ public class RegistrarProducto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

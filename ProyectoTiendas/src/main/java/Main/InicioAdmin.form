@@ -273,7 +273,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
+        <Menu class="javax.swing.JMenu" name="menuHora">
           <Properties>
             <Property name="text" type="java.lang.String" value="TIENDA SAN MARCOS 15/08/2020"/>
             <Property name="horizontalAlignment" type="int" value="0"/>
@@ -289,6 +289,7 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="42" green="42" red="42" type="rgb"/>
     </Property>
+    <Property name="focusCycleRoot" type="boolean" value="false"/>
     <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
       <Point value="[0, 0]"/>
     </Property>
