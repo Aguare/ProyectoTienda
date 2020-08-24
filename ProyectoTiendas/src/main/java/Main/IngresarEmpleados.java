@@ -1,17 +1,32 @@
 package Main;
 
+import BInstancias.Tienda;
+import BManejadores.ManejoConsultas;
+import BManejadores.Sesion;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aguare
  */
 public class IngresarEmpleados extends javax.swing.JFrame {
 
+    private Sesion sesion = new Sesion();
+    private ManejoConsultas consultas = new ManejoConsultas();
+    private ArrayList<Tienda> tiendas;
+
     /**
      * Creates new form IngresarEmpleados
+     *
      */
     public IngresarEmpleados() {
         initComponents();
         this.setLocationRelativeTo(null);
+        tiendas = consultas.ObtenerTiendas();
+        for (Tienda tienda : tiendas) {
+            comboTiendas.addItem(tienda.getCodTienda() + ",\t" + tienda.getNombre());
+        }
     }
 
     /**
@@ -25,12 +40,12 @@ public class IngresarEmpleados extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        textUsuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        textPassword = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        comboTiendas = new javax.swing.JComboBox<>();
+        buttonIngresar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,9 +64,12 @@ public class IngresarEmpleados extends javax.swing.JFrame {
 
         jLabel4.setText("TIENDA:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton1.setText("INGRESAR");
+        buttonIngresar.setText("INGRESAR");
+        buttonIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonIngresarActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("IR A REPORTES");
 
@@ -69,16 +87,16 @@ public class IngresarEmpleados extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel4)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1)
                             .addComponent(jLabel3)
-                            .addComponent(jPasswordField1)
-                            .addComponent(jComboBox1, 0, 253, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(comboTiendas, 0, 267, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(textUsuario)
+                            .addComponent(textPassword))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(94, 94, 94)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -89,24 +107,39 @@ public class IngresarEmpleados extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addGap(24, 24, 24)
+                .addComponent(buttonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIngresarActionPerformed
+        String pass = String.valueOf(textPassword.getPassword());
+        boolean inicio = (boolean) sesion.IniciarSesion(textUsuario.getText(), pass);
+        if (inicio) {
+            if (!tiendas.isEmpty()) {
+                InicioAdmin principal = new InicioAdmin(tiendas.get(comboTiendas.getSelectedIndex()));
+                principal.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null, "Debe seleccionar una tienda para poder trabajar", "Error de Tienda", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuario Inválido", "Inválido", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_buttonIngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,22 +169,19 @@ public class IngresarEmpleados extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new IngresarEmpleados().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new IngresarEmpleados().setVisible(true);
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton buttonIngresar;
+    private javax.swing.JComboBox<String> comboTiendas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField textPassword;
+    private javax.swing.JTextField textUsuario;
     // End of variables declaration//GEN-END:variables
 }
