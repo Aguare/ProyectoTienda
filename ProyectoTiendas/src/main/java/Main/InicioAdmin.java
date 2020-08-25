@@ -1,9 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Main;
+
+import BInstancias.Tienda;
+import GUIAdmin.clienteBuscar;
+import GUIAdmin.inventarioBuscar;
+import GUIAdmin.pedidoBuscar;
+import GUIAdmin.pedidoNuevo;
+import GUIAdmin.ventasVentas;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import javax.swing.JTabbedPane;
 
 /**
  *
@@ -11,11 +16,52 @@ package Main;
  */
 public class InicioAdmin extends javax.swing.JFrame {
 
+    public Tienda tienda;
+    //Paneles 
+    private ventasVentas venta;
+    private pedidoNuevo pNuevo;
+    private pedidoBuscar pBuscar;
+    private inventarioBuscar iBuscar;
+    private clienteBuscar cBuscar;
+
+    //Pestañas
+    private JTabbedPane pedido = new JTabbedPane();
+
     /**
      * Creates new form InicioAdmin
      */
-    public InicioAdmin() {
+    public InicioAdmin(Tienda tienda) {
         initComponents();
+        this.tienda = tienda;
+        cargarVentanas();
+        this.setLocationRelativeTo(null);
+
+        Calendar cal = new GregorianCalendar();
+        String fecha = cal.getTime().toString();
+        menuHora.setText(fecha);
+
+    }
+
+    private void cargarVentanas() {
+        venta = new ventasVentas(tienda, this);
+        pNuevo = new pedidoNuevo(tienda);
+        pBuscar = new pedidoBuscar();
+        iBuscar = new inventarioBuscar(tienda);
+        cBuscar = new clienteBuscar();
+        pestaPrincipal.add("Ventas", venta);
+        pestaPrincipal.add("Pedido", pedido);
+        pedido.add("Nuevo", pNuevo);
+        pedido.add("Buscar", pBuscar);
+        pestaPrincipal.add("Inventario", iBuscar);
+        pestaPrincipal.add("Cliente", cBuscar);
+    }
+
+    public Tienda getTiendaTrabajo() {
+        return tienda;
+    }
+
+    public void setTiendaTrabajo(Tienda tiendaTrabajo) {
+        this.tienda = tiendaTrabajo;
     }
 
     /**
@@ -27,22 +73,14 @@ public class InicioAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tablaPPrincipal = new javax.swing.JTabbedPane();
-        tablaVentas = new javax.swing.JTabbedPane();
-        tablaPedidos = new javax.swing.JTabbedPane();
-        jTabbedPane4 = new javax.swing.JTabbedPane();
-        jTabbedPane5 = new javax.swing.JTabbedPane();
-        tablaProductos = new javax.swing.JTabbedPane();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jTabbedPane3 = new javax.swing.JTabbedPane();
-        jTabbedPane6 = new javax.swing.JTabbedPane();
-        jTabbedPane7 = new javax.swing.JTabbedPane();
-        jTabbedPane8 = new javax.swing.JTabbedPane();
-        jTabbedPane9 = new javax.swing.JTabbedPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        pestaPrincipal = new javax.swing.JTabbedPane();
+        barraMenu = new javax.swing.JMenuBar();
         menuOpciones = new javax.swing.JMenu();
         itemCambiarTienda = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         itemCerrarSesion = new javax.swing.JMenuItem();
         menuReportes = new javax.swing.JMenu();
         menuPedidos = new javax.swing.JMenu();
@@ -64,48 +102,26 @@ public class InicioAdmin extends javax.swing.JFrame {
         menuTienda = new javax.swing.JMenu();
         itemEditarTienda = new javax.swing.JMenuItem();
         itemRegistrarTienda = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         itemTiempoTraslado = new javax.swing.JMenuItem();
         menuAyuda = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        menuHora = new javax.swing.JMenu();
+
+        jScrollPane4.setViewportView(jTree1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administración");
         setBackground(new java.awt.Color(66, 66, 66));
+        setFocusCycleRoot(false);
         setLocation(new java.awt.Point(0, 0));
         setLocationByPlatform(true);
+        setResizable(false);
 
-        tablaPPrincipal.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        tablaPPrincipal.setOpaque(true);
+        barraMenu.setForeground(new java.awt.Color(0, 0, 0));
+        barraMenu.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
-        tablaVentas.setBackground(new java.awt.Color(66, 66, 66));
-        tablaVentas.setOpaque(true);
-        tablaPPrincipal.addTab("Ventas", tablaVentas);
-
-        tablaPedidos.setBackground(new java.awt.Color(66, 66, 66));
-        tablaPedidos.setOpaque(true);
-        tablaPedidos.addTab("Ingresar", jTabbedPane4);
-        tablaPedidos.addTab("Editar", jTabbedPane5);
-
-        tablaPPrincipal.addTab("Pedido", tablaPedidos);
-
-        tablaProductos.setBackground(new java.awt.Color(66, 66, 66));
-        tablaProductos.setOpaque(true);
-        tablaProductos.addTab("Ingresar", jTabbedPane1);
-        tablaProductos.addTab("Editar", jTabbedPane2);
-        tablaProductos.addTab("Registrar Fabricante", jTabbedPane3);
-
-        tablaPPrincipal.addTab("Inventario", tablaProductos);
-
-        jTabbedPane6.addTab("Buscar", jTabbedPane7);
-        jTabbedPane6.addTab("Registrar", jTabbedPane8);
-        jTabbedPane6.addTab("Editar", jTabbedPane9);
-
-        tablaPPrincipal.addTab("Cliente", jTabbedPane6);
-
-        jMenuBar1.setForeground(new java.awt.Color(0, 0, 0));
-        jMenuBar1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-
-        menuOpciones.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        menuOpciones.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         menuOpciones.setForeground(new java.awt.Color(0, 0, 0));
         menuOpciones.setText("Opciones");
         menuOpciones.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -119,6 +135,9 @@ public class InicioAdmin extends javax.swing.JFrame {
         });
         menuOpciones.add(itemCambiarTienda);
 
+        jMenuItem3.setText("Cargar Datos");
+        menuOpciones.add(jMenuItem3);
+
         itemCerrarSesion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         itemCerrarSesion.setText("Cerrar Sesión");
         itemCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
@@ -128,7 +147,7 @@ public class InicioAdmin extends javax.swing.JFrame {
         });
         menuOpciones.add(itemCerrarSesion);
 
-        jMenuBar1.add(menuOpciones);
+        barraMenu.add(menuOpciones);
 
         menuReportes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         menuReportes.setForeground(new java.awt.Color(0, 0, 0));
@@ -189,7 +208,7 @@ public class InicioAdmin extends javax.swing.JFrame {
 
         menuReportes.add(jMenu1);
 
-        jMenuBar1.add(menuReportes);
+        barraMenu.add(menuReportes);
 
         menuRegistros.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         menuRegistros.setForeground(new java.awt.Color(0, 0, 0));
@@ -203,7 +222,7 @@ public class InicioAdmin extends javax.swing.JFrame {
         itemRegistrarEmpleado.setText("Registrar Empleado");
         menuRegistros.add(itemRegistrarEmpleado);
 
-        jMenuBar1.add(menuRegistros);
+        barraMenu.add(menuRegistros);
 
         menuTienda.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         menuTienda.setForeground(new java.awt.Color(0, 0, 0));
@@ -217,10 +236,13 @@ public class InicioAdmin extends javax.swing.JFrame {
         itemRegistrarTienda.setText("Registrar Tienda");
         menuTienda.add(itemRegistrarTienda);
 
+        jMenuItem1.setText("Ver Tiendas");
+        menuTienda.add(jMenuItem1);
+
         itemTiempoTraslado.setText("Tiempo Traslado");
         menuTienda.add(itemTiempoTraslado);
 
-        jMenuBar1.add(menuTienda);
+        barraMenu.add(menuTienda);
 
         menuAyuda.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         menuAyuda.setForeground(new java.awt.Color(0, 0, 0));
@@ -236,19 +258,24 @@ public class InicioAdmin extends javax.swing.JFrame {
         });
         menuAyuda.add(jMenuItem2);
 
-        jMenuBar1.add(menuAyuda);
+        barraMenu.add(menuAyuda);
 
-        setJMenuBar(jMenuBar1);
+        menuHora.setText("TIENDA SAN MARCOS 15/08/2020");
+        menuHora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuHora.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        barraMenu.add(menuHora);
+
+        setJMenuBar(barraMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tablaPPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1026, Short.MAX_VALUE)
+            .addComponent(pestaPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tablaPPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
+            .addComponent(pestaPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
         );
 
         pack();
@@ -274,42 +301,9 @@ public class InicioAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_itemPedidoAtrasadosActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InicioAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InicioAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InicioAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InicioAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InicioAdmin().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar barraMenu;
     private javax.swing.JMenuItem itemCambiarTienda;
     private javax.swing.JMenuItem itemCerrarSesion;
     private javax.swing.JMenuItem itemClienteCompras;
@@ -327,18 +321,14 @@ public class InicioAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemRegistrarTienda;
     private javax.swing.JMenuItem itemTiempoTraslado;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTabbedPane jTabbedPane4;
-    private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTabbedPane jTabbedPane6;
-    private javax.swing.JTabbedPane jTabbedPane7;
-    private javax.swing.JTabbedPane jTabbedPane8;
-    private javax.swing.JTabbedPane jTabbedPane9;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTree jTree1;
     private javax.swing.JMenu menuAyuda;
+    private javax.swing.JMenu menuHora;
     private javax.swing.JMenu menuOpciones;
     private javax.swing.JMenu menuPedidos;
     private javax.swing.JMenu menuRTienda;
@@ -346,9 +336,6 @@ public class InicioAdmin extends javax.swing.JFrame {
     private javax.swing.JMenu menuReportes;
     private javax.swing.JMenu menuSegunCliente;
     private javax.swing.JMenu menuTienda;
-    private javax.swing.JTabbedPane tablaPPrincipal;
-    private javax.swing.JTabbedPane tablaPedidos;
-    private javax.swing.JTabbedPane tablaProductos;
-    private javax.swing.JTabbedPane tablaVentas;
+    private javax.swing.JTabbedPane pestaPrincipal;
     // End of variables declaration//GEN-END:variables
 }
