@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUIAdmin;
+
+import BInstancias.Tienda;
 
 /**
  *
@@ -11,11 +8,14 @@ package GUIAdmin;
  */
 public class pedidoNuevo extends javax.swing.JPanel {
 
+    private Tienda tienda;
+
     /**
      * Creates new form pedidoNuevo
      */
-    public pedidoNuevo() {
+    public pedidoNuevo(Tienda tienda) {
         initComponents();
+        this.tienda = tienda;
     }
 
     /**

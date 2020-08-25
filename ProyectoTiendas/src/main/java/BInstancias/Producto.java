@@ -12,14 +12,16 @@ public class Producto {
     private double precio;
     private String descripcion;
     private int garantiaMeses;
+    private String fabricante;
 
-    public Producto(String idProducto, String nombre, int cantidad, double precio, String descripcion, int garantiaMeses) {
+    public Producto(String idProducto, String nombre, int cantidad, double precio, String descripcion, int garantiaMeses, String Fabricante) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.precio = precio;
         this.descripcion = descripcion;
         this.garantiaMeses = garantiaMeses;
+        this.fabricante = fabricante;
     }
 
     public String getIdProducto() {

@@ -16,13 +16,13 @@ import javax.swing.JTabbedPane;
  */
 public class InicioAdmin extends javax.swing.JFrame {
 
-    public Tienda tiendaTrabajo;
+    public Tienda tienda;
     //Paneles 
-    private ventasVentas venta = new ventasVentas();
-    private pedidoNuevo pNuevo = new pedidoNuevo();
-    private pedidoBuscar pBuscar = new pedidoBuscar();
-    private inventarioBuscar iBuscar = new inventarioBuscar();
-    private clienteBuscar cBuscar = new clienteBuscar();
+    private ventasVentas venta;
+    private pedidoNuevo pNuevo;
+    private pedidoBuscar pBuscar;
+    private inventarioBuscar iBuscar;
+    private clienteBuscar cBuscar;
 
     //Pestañas
     private JTabbedPane pedido = new JTabbedPane();
@@ -32,16 +32,22 @@ public class InicioAdmin extends javax.swing.JFrame {
      */
     public InicioAdmin(Tienda tienda) {
         initComponents();
-        this.tiendaTrabajo = tienda;
+        this.tienda = tienda;
         cargarVentanas();
         this.setLocationRelativeTo(null);
 
         Calendar cal = new GregorianCalendar();
         String fecha = cal.getTime().toString();
         menuHora.setText(fecha);
+
     }
 
     private void cargarVentanas() {
+        venta = new ventasVentas(tienda, this);
+        pNuevo = new pedidoNuevo(tienda);
+        pBuscar = new pedidoBuscar();
+        iBuscar = new inventarioBuscar(tienda);
+        cBuscar = new clienteBuscar();
         pestaPrincipal.add("Ventas", venta);
         pestaPrincipal.add("Pedido", pedido);
         pedido.add("Nuevo", pNuevo);
@@ -51,11 +57,11 @@ public class InicioAdmin extends javax.swing.JFrame {
     }
 
     public Tienda getTiendaTrabajo() {
-        return tiendaTrabajo;
+        return tienda;
     }
 
     public void setTiendaTrabajo(Tienda tiendaTrabajo) {
-        this.tiendaTrabajo = tiendaTrabajo;
+        this.tienda = tiendaTrabajo;
     }
 
     /**

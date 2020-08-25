@@ -1,5 +1,6 @@
 package GUIAdmin;
 
+import BInstancias.Tienda;
 import PanelesConsulta.PanelProducto;
 
 /**
@@ -8,11 +9,14 @@ import PanelesConsulta.PanelProducto;
  */
 public class inventarioBuscar extends javax.swing.JPanel {
 
+    private Tienda tienda;
+
     /**
      * Creates new form inventarioBuscar
      */
-    public inventarioBuscar() {
+    public inventarioBuscar(Tienda tienda) {
         initComponents();
+        this.tienda = tienda;
         PanelProducto nuevo1 = new PanelProducto();
         nuevo1.setBounds(0, 0, 932, 52);
         panelBuscarInventario.add(nuevo1);
@@ -198,8 +202,8 @@ public class inventarioBuscar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      RegistrarProducto registrar = new RegistrarProducto();
-      registrar.setVisible(true);
+        RegistrarProducto registrar = new RegistrarProducto(tienda);
+        registrar.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -1,7 +1,7 @@
 package Main;
 
 import BInstancias.Tienda;
-import BManejadores.ManejoConsultas;
+import BManejadores.ConsultasOtros;
 import BManejadores.Sesion;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 public class IngresarEmpleados extends javax.swing.JFrame {
 
     private Sesion sesion = new Sesion();
-    private ManejoConsultas consultas = new ManejoConsultas();
+    private ConsultasOtros consultas = new ConsultasOtros();
     private ArrayList<Tienda> tiendas;
 
     /**
@@ -133,6 +133,7 @@ public class IngresarEmpleados extends javax.swing.JFrame {
             if (!tiendas.isEmpty()) {
                 InicioAdmin principal = new InicioAdmin(tiendas.get(comboTiendas.getSelectedIndex()));
                 principal.setVisible(true);
+                this.dispose();
             }else{
                 JOptionPane.showMessageDialog(null, "Debe seleccionar una tienda para poder trabajar", "Error de Tienda", JOptionPane.ERROR_MESSAGE);
             }

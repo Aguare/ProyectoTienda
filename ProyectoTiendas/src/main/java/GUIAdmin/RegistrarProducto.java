@@ -1,16 +1,21 @@
 package GUIAdmin;
 
+import BInstancias.Tienda;
+
 /**
  *
  * @author aguare
  */
 public class RegistrarProducto extends javax.swing.JFrame {
-
+    
+    private final Tienda tienda;
     /**
      * Creates new form IngresarProducto
+     * @param tienda la tienda en la que se estara trabajando
      */
-    public RegistrarProducto() {
+    public RegistrarProducto(Tienda tienda) {
         initComponents();
+        this.tienda = tienda;
     }
 
     /**

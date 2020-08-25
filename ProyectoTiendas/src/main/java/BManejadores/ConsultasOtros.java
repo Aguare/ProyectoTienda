@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author aguare
  */
-public class ManejoConsultas {
+public class ConsultasOtros {
 
     public ArrayList ObtenerTiendas() {
         String query = "SELECT * FROM Tienda";
@@ -29,17 +29,17 @@ public class ManejoConsultas {
                     lista.add(new Tienda(result.getString(1), result.getString(2), result.getString(3), result.getInt(4), result.getString(5), result.getString(6)));
                 }
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar Consulta", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error al realizar Consulta Otros", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
             }
             connection.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al realizar Consulta", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al realizar Consulta Otros", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
         }
         return lista;
     }
 
     public ArrayList ObtenerEmpleados() {
-        String query = "SELECT * FROM Empleados";
+        String query = "SELECT * FROM Empleado";
         ArrayList<Empleado> lista = new ArrayList();
         try {
             Connection connection = Sesion.Conexion();
@@ -50,32 +50,37 @@ public class ManejoConsultas {
                     lista.add(new Empleado(result.getString(1), result.getString(2), result.getInt(3), result.getInt(4), result.getString(5), result.getString(6), result.getString(7)));
                 }
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar Consulta", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error al realizar Consulta Otros", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
             }
             connection.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al realizar Consulta", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al realizar Consulta Otros", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
         }
         return lista;
     }
 
-    public ArrayList ObtenerClientes() {
-        String query = "SELECT * FROM Cliente";
-        ArrayList<Cliente> lista = new ArrayList();
+    public ArrayList ObtenerEmpleadosCodigo(String busqueda) {
+        String query = "SELECT * FROM Empleado WHERE codEmpleado = ?";
+        ArrayList<Empleado> lista = new ArrayList();
         try {
             Connection connection = Sesion.Conexion();
-            try (PreparedStatement preSt = connection.prepareStatement(query);
-                    ResultSet result = preSt.executeQuery()) {
+            try (PreparedStatement preSt = connection.prepareStatement(query)) {
+
+                preSt.setString(1, busqueda + "%");
+                ResultSet result = preSt.executeQuery();
 
                 while (result.next()) {
-                    lista.add(new Cliente(result.getString(1), result.getString(2), result.getDouble(3), result.getInt(4), result.getInt(5), result.getString(6)));
+                    lista.add(new Empleado(result.getString(1), result.getString(2), result.getInt(3), result.getInt(4),
+                            result.getString(5), result.getString(6), result.getString(7)));
                 }
+
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar Consulta", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error en Consulta Clientes", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
             }
+
             connection.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al realizar Consulta", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al realizar Consulta Otros", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
         }
         return lista;
     }
@@ -92,11 +97,11 @@ public class ManejoConsultas {
                     lista.add(new Tiempo(result.getInt(1), result.getInt(2), BuscarTienda(result.getString(3)), BuscarTienda(result.getString(4))));
                 }
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar Consulta", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error al realizar Consulta Otros", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
             }
             connection.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al realizar Consulta", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al realizar Consulta Otros", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
         }
         return lista;
     }
@@ -113,13 +118,12 @@ public class ManejoConsultas {
                     tienda = new Tienda(result.getString(1), result.getString(2), result.getString(3), result.getInt(4), result.getString(5), result.getString(6));
                 }
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar Consulta", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error al realizar Consulta Otros", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
             }
             connection.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al realizar Consulta", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al realizar Consulta Otros", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
         }
         return tienda;
     }
-
 }
