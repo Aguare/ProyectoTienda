@@ -46,18 +46,13 @@
             </Property>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="itemCambiarTienda">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Cambiar de Tienda"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemCambiarTiendaActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cargar Datos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemCerrarSesion">
               <Properties>
@@ -106,8 +101,11 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="itemPedidoPendientes">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Pendientes"/>
+                    <Property name="text" type="java.lang.String" value="Sin recoger"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemPedidoPendientesActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="itemPedidoAtrasados">
                   <Properties>
@@ -119,8 +117,11 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="itemPedidoTransito">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="En Tr&#xe1;nsito"/>
+                    <Property name="text" type="java.lang.String" value="Enviados en Tr&#xe1;nsito"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemPedidoTransitoActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -133,11 +134,17 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Compras"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemClienteComprasActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="itemClientePedidos">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Pedidos"/>
+                    <Property name="text" type="java.lang.String" value="Pedidos en Tr&#xe1;nsito"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemClientePedidosActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>

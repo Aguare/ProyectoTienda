@@ -35,26 +35,26 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel13" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
-                                  <Component id="jTextField10" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
+                                  <Component id="textNIT" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
                                   <Component id="jLabel36" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
-                                  <Component id="jTextField15" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
+                                  <Component id="textDireccion" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
                                   <Component id="jLabel39" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
-                                  <Component id="jTextField18" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
+                                  <Component id="textTelefono" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="38" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel37" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
-                                  <Component id="jTextField16" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
+                                  <Component id="textNombre" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
                                   <Component id="jLabel38" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
-                                  <Component id="jTextField17" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
+                                  <Component id="textCorreo" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
                                   <Component id="jLabel40" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
-                                  <Component id="jTextField19" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
+                                  <Component id="textDPI" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="jButton2" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="buttonCancelar" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="buttonRegistrar" min="-2" pref="120" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
@@ -73,12 +73,12 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                      <Component id="jTextField10" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="textNIT" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField16" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="textNombre" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -86,12 +86,12 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField15" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="textDireccion" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField17" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="textCorreo" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -99,18 +99,18 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel39" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField18" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="textTelefono" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel40" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField19" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="textDPI" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonRegistrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -126,9 +126,9 @@
         <Property name="text" type="java.lang.String" value="NIT*"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField10">
+    <Component class="javax.swing.JTextField" name="textNIT">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField15">
+    <Component class="javax.swing.JTextField" name="textDireccion">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel36">
       <Properties>
@@ -146,7 +146,7 @@
         <Property name="text" type="java.lang.String" value="NOMBRE*"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField16">
+    <Component class="javax.swing.JTextField" name="textNombre">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel38">
       <Properties>
@@ -156,17 +156,17 @@
         <Property name="text" type="java.lang.String" value="CORREO ELECTR&#xd3;NICO"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField17">
+    <Component class="javax.swing.JTextField" name="textCorreo">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel39">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="16" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="TELEFONO*"/>
+        <Property name="text" type="java.lang.String" value="TELEFONO"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField18">
+    <Component class="javax.swing.JTextField" name="textTelefono">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel40">
       <Properties>
@@ -176,24 +176,27 @@
         <Property name="text" type="java.lang.String" value="DPI"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField19">
+    <Component class="javax.swing.JTextField" name="textDPI">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="* Campos obligatorios"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="buttonRegistrar">
       <Properties>
         <Property name="text" type="java.lang.String" value="REGISTRAR"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRegistrarActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="buttonCancelar">
       <Properties>
         <Property name="text" type="java.lang.String" value="CANCELAR"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -1,20 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package PanelesConsulta;
+package GUIConsultas;
 
 /**
  *
  * @author aguare
  */
-public class PanelProducto extends javax.swing.JPanel {
+public class PanelPedido extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelPedido
      */
-    public PanelProducto() {
+    public PanelPedido() {
         initComponents();
     }
 
@@ -32,8 +27,8 @@ public class PanelProducto extends javax.swing.JPanel {
         labelEstado = new javax.swing.JLabel();
         buttonEditar = new javax.swing.JButton();
         buttonRecibido = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         labelFecha = new javax.swing.JLabel();
-        labelEstado1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(153, 153, 153));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -44,42 +39,40 @@ public class PanelProducto extends javax.swing.JPanel {
 
         labelNombre.setForeground(new java.awt.Color(0, 0, 0));
         labelNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelNombre.setText("AUDIFONOS COLOR NEGRO DE GOMA");
+        labelNombre.setText("MARCOS ANDRÉS AGUARE BRAVO");
 
         labelEstado.setForeground(new java.awt.Color(0, 0, 0));
         labelEstado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelEstado.setText("200");
+        labelEstado.setText("EN TRÁNSITO");
 
-        buttonEditar.setText("EDITAR");
+        buttonEditar.setText("VER");
 
-        buttonRecibido.setText("ELIMINAR");
+        buttonRecibido.setText("RECIBIDO");
+
+        jButton3.setText("ENTREGAR");
 
         labelFecha.setForeground(new java.awt.Color(0, 0, 0));
         labelFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelFecha.setText("XIAOMI");
-
-        labelEstado1.setForeground(new java.awt.Color(0, 0, 0));
-        labelEstado1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelEstado1.setText("Q.275.99");
+        labelFecha.setText("20/04/2020");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(labelCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelEstado1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonRecibido, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -90,8 +83,8 @@ public class PanelProducto extends javax.swing.JPanel {
                 .addComponent(labelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(buttonEditar)
                 .addComponent(buttonRecibido)
-                .addComponent(labelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(labelEstado1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton3)
+                .addComponent(labelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -99,9 +92,9 @@ public class PanelProducto extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonEditar;
     private javax.swing.JButton buttonRecibido;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel labelCodigo;
     private javax.swing.JLabel labelEstado;
-    private javax.swing.JLabel labelEstado1;
     private javax.swing.JLabel labelFecha;
     private javax.swing.JLabel labelNombre;
     // End of variables declaration//GEN-END:variables
