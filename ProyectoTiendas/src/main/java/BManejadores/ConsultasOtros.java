@@ -1,6 +1,5 @@
 package BManejadores;
 
-import BInstancias.Cliente;
 import BInstancias.Empleado;
 import BInstancias.Tiempo;
 import BInstancias.Tienda;
@@ -60,7 +59,7 @@ public class ConsultasOtros {
     }
 
     public ArrayList ObtenerEmpleadosCodigo(String busqueda) {
-        String query = "SELECT * FROM Empleado WHERE codEmpleado = ?";
+        String query = "SELECT * FROM Empleado WHERE codEmpleado LIKE ?";
         ArrayList<Empleado> lista = new ArrayList();
         try {
             Connection connection = Sesion.Conexion();
@@ -75,7 +74,7 @@ public class ConsultasOtros {
                 }
 
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error en Consulta Clientes", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error al realizar Consulta Otros", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
             }
 
             connection.close();

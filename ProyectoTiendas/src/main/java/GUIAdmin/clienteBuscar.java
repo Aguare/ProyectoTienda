@@ -1,6 +1,6 @@
 package GUIAdmin;
 
-import PanelesConsulta.PanelCliente;
+import GUIConsultas.PanelCliente;
 
 /**
  *

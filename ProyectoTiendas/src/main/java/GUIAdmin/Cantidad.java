@@ -8,7 +8,7 @@ import javax.swing.SpinnerNumberModel;
  * @author aguare
  */
 public class Cantidad extends javax.swing.JDialog {
-
+    
     private boolean aceptar = false;
     private int cantidad;
 
@@ -19,22 +19,23 @@ public class Cantidad extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        ((JSpinner.DefaultEditor) spinnerCantidad.getEditor()).getTextField().setEditable(false);
+        labelCantidad.setText("" + maximo);
         spinnerCantidad.setModel(new SpinnerNumberModel(1, 1, maximo, 1));
+        ((JSpinner.DefaultEditor) spinnerCantidad.getEditor()).getTextField().setEditable(false);
     }
-
+    
     public int obtenerCantidad() {
         return (int) spinnerCantidad.getValue();
     }
-
+    
     public void setAceptar(boolean aceptar) {
         this.aceptar = aceptar;
     }
-
+    
     public boolean isAceptar() {
         return aceptar;
     }
-
+    
     public int getCantidad() {
         return cantidad;
     }
@@ -52,6 +53,8 @@ public class Cantidad extends javax.swing.JDialog {
         spinnerCantidad = new javax.swing.JSpinner();
         buttonCancelar = new javax.swing.JButton();
         buttonAceptar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        labelCantidad = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -79,6 +82,10 @@ public class Cantidad extends javax.swing.JDialog {
             }
         });
 
+        jLabel1.setText("Disponible en Tienda:");
+
+        labelCantidad.setText("cantidad");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,22 +96,33 @@ public class Cantidad extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonAceptar)
                 .addGap(20, 20, 20))
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(152, 152, 152)
-                .addComponent(spinnerCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelCantidad))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(spinnerCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(spinnerCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonAceptar)
-                    .addComponent(buttonCancelar))
+                    .addComponent(jLabel1)
+                    .addComponent(labelCantidad))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(spinnerCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonCancelar)
+                    .addComponent(buttonAceptar))
                 .addGap(14, 14, 14))
         );
 
@@ -125,7 +143,9 @@ public class Cantidad extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAceptar;
     private javax.swing.JButton buttonCancelar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel labelCantidad;
     private javax.swing.JSpinner spinnerCantidad;
     // End of variables declaration//GEN-END:variables
 }

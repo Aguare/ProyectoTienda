@@ -36,15 +36,18 @@ public class InicioAdmin extends javax.swing.JFrame {
         cargarVentanas();
         this.setLocationRelativeTo(null);
 
-        Calendar cal = new GregorianCalendar();
-        String fecha = cal.getTime().toString();
-        menuHora.setText(fecha);
+        Calendar fecha = new GregorianCalendar();
+        int a = fecha.get(Calendar.YEAR);
+        int mes = fecha.get(Calendar.MONTH);
+        int dia = fecha.get(Calendar.DAY_OF_MONTH);
+        String f = "" + dia + "/" + mes + "/" + a;
+        menuHora.setText(f + "\t " + tienda.getNombre());
 
     }
 
     private void cargarVentanas() {
         venta = new ventasVentas(tienda, this);
-        pNuevo = new pedidoNuevo(tienda);
+        pNuevo = new pedidoNuevo(tienda, this);
         pBuscar = new pedidoBuscar();
         iBuscar = new inventarioBuscar(tienda);
         cBuscar = new clienteBuscar();
