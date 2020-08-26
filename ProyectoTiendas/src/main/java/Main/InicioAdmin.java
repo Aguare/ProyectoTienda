@@ -1,11 +1,19 @@
 package Main;
 
 import BInstancias.Tienda;
+import BManejadores.CargaArchivo;
+import GUIAdmin.GUICargaArchivos;
 import GUIAdmin.clienteBuscar;
 import GUIAdmin.inventarioBuscar;
 import GUIAdmin.pedidoBuscar;
 import GUIAdmin.pedidoNuevo;
 import GUIAdmin.ventasVentas;
+import Reportes.ComprasPorCliente;
+import Reportes.PedidosAtrasados;
+import Reportes.PedidosCursoCliente;
+import Reportes.PedidosEnTienda;
+import Reportes.PedidosSalida;
+import Reportes.PedidosTienda;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JTabbedPane;
@@ -49,7 +57,7 @@ public class InicioAdmin extends javax.swing.JFrame {
         venta = new ventasVentas(tienda, this);
         pNuevo = new pedidoNuevo(tienda, this);
         pBuscar = new pedidoBuscar();
-        iBuscar = new inventarioBuscar(tienda);
+        iBuscar = new inventarioBuscar(tienda, this);
         cBuscar = new clienteBuscar();
         pestaPrincipal.add("Ventas", venta);
         pestaPrincipal.add("Pedido", pedido);
@@ -82,7 +90,6 @@ public class InicioAdmin extends javax.swing.JFrame {
         pestaPrincipal = new javax.swing.JTabbedPane();
         barraMenu = new javax.swing.JMenuBar();
         menuOpciones = new javax.swing.JMenu();
-        itemCambiarTienda = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         itemCerrarSesion = new javax.swing.JMenuItem();
         menuReportes = new javax.swing.JMenu();
@@ -130,15 +137,12 @@ public class InicioAdmin extends javax.swing.JFrame {
         menuOpciones.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         menuOpciones.setMargin(new java.awt.Insets(3, 3, 3, 3));
 
-        itemCambiarTienda.setText("Cambiar de Tienda");
-        itemCambiarTienda.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem3.setText("Cargar Datos");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemCambiarTiendaActionPerformed(evt);
+                jMenuItem3ActionPerformed(evt);
             }
         });
-        menuOpciones.add(itemCambiarTienda);
-
-        jMenuItem3.setText("Cargar Datos");
         menuOpciones.add(jMenuItem3);
 
         itemCerrarSesion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
@@ -168,7 +172,12 @@ public class InicioAdmin extends javax.swing.JFrame {
         });
         menuPedidos.add(itemPedidoEntrar);
 
-        itemPedidoPendientes.setText("Pendientes");
+        itemPedidoPendientes.setText("Sin recoger");
+        itemPedidoPendientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemPedidoPendientesActionPerformed(evt);
+            }
+        });
         menuPedidos.add(itemPedidoPendientes);
 
         itemPedidoAtrasados.setText("Atrasados");
@@ -179,7 +188,12 @@ public class InicioAdmin extends javax.swing.JFrame {
         });
         menuPedidos.add(itemPedidoAtrasados);
 
-        itemPedidoTransito.setText("En Tránsito");
+        itemPedidoTransito.setText("Enviados en Tránsito");
+        itemPedidoTransito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemPedidoTransitoActionPerformed(evt);
+            }
+        });
         menuPedidos.add(itemPedidoTransito);
 
         menuReportes.add(menuPedidos);
@@ -187,9 +201,19 @@ public class InicioAdmin extends javax.swing.JFrame {
         menuSegunCliente.setText("Según Cliente");
 
         itemClienteCompras.setText("Compras");
+        itemClienteCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemClienteComprasActionPerformed(evt);
+            }
+        });
         menuSegunCliente.add(itemClienteCompras);
 
-        itemClientePedidos.setText("Pedidos");
+        itemClientePedidos.setText("Pedidos en Tránsito");
+        itemClientePedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemClientePedidosActionPerformed(evt);
+            }
+        });
         menuSegunCliente.add(itemClientePedidos);
 
         menuReportes.add(menuSegunCliente);
@@ -285,29 +309,54 @@ public class InicioAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCerrarSesionActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        IngresarEmpleados nuevo = new IngresarEmpleados();
+        nuevo.setVisible(true);
+        System.gc();
     }//GEN-LAST:event_itemCerrarSesionActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void itemCambiarTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCambiarTiendaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_itemCambiarTiendaActionPerformed
-
     private void itemPedidoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPedidoEntrarActionPerformed
-        // TODO add your handling code here:
+        PedidosTienda tienda = new PedidosTienda();
+        tienda.setVisible(true);
     }//GEN-LAST:event_itemPedidoEntrarActionPerformed
 
     private void itemPedidoAtrasadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPedidoAtrasadosActionPerformed
-        // TODO add your handling code here:
+        PedidosAtrasados atrasados = new PedidosAtrasados();
+        atrasados.setVisible(true);
     }//GEN-LAST:event_itemPedidoAtrasadosActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        GUICargaArchivos carga = new GUICargaArchivos();
+        carga.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void itemPedidoPendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPedidoPendientesActionPerformed
+       PedidosEnTienda pedidos = new PedidosEnTienda();
+       pedidos.setVisible(true);
+    }//GEN-LAST:event_itemPedidoPendientesActionPerformed
+
+    private void itemPedidoTransitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPedidoTransitoActionPerformed
+        PedidosSalida nuevo = new PedidosSalida();
+        nuevo.setVisible(true);
+    }//GEN-LAST:event_itemPedidoTransitoActionPerformed
+
+    private void itemClienteComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClienteComprasActionPerformed
+        ComprasPorCliente c = new ComprasPorCliente();
+        c.setVisible(true);
+    }//GEN-LAST:event_itemClienteComprasActionPerformed
+
+    private void itemClientePedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClientePedidosActionPerformed
+        PedidosCursoCliente curso = new PedidosCursoCliente();
+        curso.setVisible(true);
+    }//GEN-LAST:event_itemClientePedidosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barraMenu;
-    private javax.swing.JMenuItem itemCambiarTienda;
     private javax.swing.JMenuItem itemCerrarSesion;
     private javax.swing.JMenuItem itemClienteCompras;
     private javax.swing.JMenuItem itemClientePedidos;

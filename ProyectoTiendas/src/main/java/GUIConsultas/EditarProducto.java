@@ -1,4 +1,4 @@
-package Main;
+package GUIConsultas;
 
 import BInstancias.Producto;
 import BInstancias.Tienda;
@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  * @author aguare
  */
 public class EditarProducto extends javax.swing.JDialog {
-
+    
     private Producto producto;
     ConsultasProducto consultas = new ConsultasProducto();
     ArrayList<Tienda> tiendas;
@@ -24,9 +24,11 @@ public class EditarProducto extends javax.swing.JDialog {
     public EditarProducto(java.awt.Frame parent, boolean modal, Producto producto) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.producto = producto;        
         actualizarInfo();
     }
-
+    
     private void actualizarInfo() {
         textCodigo.setText(producto.getIdProducto());
         textNombre.setText(producto.getNombre());
@@ -38,6 +40,7 @@ public class EditarProducto extends javax.swing.JDialog {
         for (Tienda tienda : tiendas) {
             comboTiendas.addItem(tienda.getCodTienda() + ", " + tienda.getNombre());
         }
+        comboTiendas.setEnabled(true);
     }
 
     /**
@@ -68,6 +71,8 @@ public class EditarProducto extends javax.swing.JDialog {
         jLabel41 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(850, 290));
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
@@ -163,6 +168,7 @@ public class EditarProducto extends javax.swing.JDialog {
                 "" + spinnerMeses.getValue(), producto.getIdProducto(), tiendas.get(comboTiendas.getSelectedIndex()), (int) spinnerCantidad.getValue());
         if (si) {
             JOptionPane.showMessageDialog(null, "Producto Actualizado", "Actualización", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "No se puedo Actualizar, verifique las modificaciones", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -174,7 +180,7 @@ public class EditarProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_comboTiendasItemStateChanged
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
 

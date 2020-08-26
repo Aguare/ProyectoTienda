@@ -7,6 +7,7 @@ import BManejadores.ConsultasProducto;
 import GUIConsultas.PanelProducto;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 /**
  *
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 public class inventarioBuscar extends javax.swing.JPanel {
 
     private Tienda tienda;
+    private JFrame principal;
 
     private ArrayList<Tienda> listaTiendas;
     private ArrayList<Producto> busquedaProductos;
@@ -26,9 +28,10 @@ public class inventarioBuscar extends javax.swing.JPanel {
     /**
      * Creates new form inventarioBuscar
      */
-    public inventarioBuscar(Tienda tienda) {
+    public inventarioBuscar(Tienda tienda, JFrame principal) {
         initComponents();
         this.tienda = tienda;
+        this.principal = principal;
         listaTiendas = otros.ObtenerTiendas();
         ingresarTiendas();
     }
@@ -56,8 +59,6 @@ public class inventarioBuscar extends javax.swing.JPanel {
         textEntrada = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         comboTiendas = new javax.swing.JComboBox<>();
-        jLabel28 = new javax.swing.JLabel();
-        comboOrden = new javax.swing.JComboBox<>();
         jLabel30 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -94,16 +95,6 @@ public class inventarioBuscar extends javax.swing.JPanel {
         comboTiendas.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 comboTiendasItemStateChanged(evt);
-            }
-        });
-
-        jLabel28.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jLabel28.setText("ORDEN:");
-
-        comboOrden.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ASCENDENTE", "DESCENDENTE" }));
-        comboOrden.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboOrdenItemStateChanged(evt);
             }
         });
 
@@ -175,15 +166,11 @@ public class inventarioBuscar extends javax.swing.JPanel {
                                         .addComponent(jLabel27)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(textEntrada)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel28)
-                                    .addComponent(jLabel26))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(comboTiendas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(comboOrden, 0, 250, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel26)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(comboTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -209,15 +196,9 @@ public class inventarioBuscar extends javax.swing.JPanel {
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel26)
-                            .addComponent(jButton1)
-                            .addComponent(comboTiendas))
+                        .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel28)
-                            .addComponent(comboOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2)))
+                        .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel25)
@@ -225,7 +206,12 @@ public class inventarioBuscar extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel27)
-                            .addComponent(textEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(textEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(comboTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel26))))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel29)
@@ -253,7 +239,10 @@ public class inventarioBuscar extends javax.swing.JPanel {
         int tipo = comboTipoB.getSelectedIndex();
         int tienda = comboTiendas.getSelectedIndex();
         int tam = listaTiendas.size();
-        String t = listaTiendas.get(tienda).getCodTienda();
+        String t = "";
+        if (tienda < tam) {
+            t = listaTiendas.get(tienda).getCodTienda();
+        }
         if (tipo == 0 && tienda > tam) {
             busquedaProductos = cPro.ObtenerProductosCodigo(entrada);
             llenarScrollPanel();
@@ -264,14 +253,10 @@ public class inventarioBuscar extends javax.swing.JPanel {
             busquedaProductos = cPro.ObtenerProductosNombre(entrada);
             llenarScrollPanel();
         } else if (tipo == 1 && tienda < tam) {
-            busquedaProductos = cPro.ObtenerProductosCodigoTienda(entrada, t);
+            busquedaProductos = cPro.ObtenerProductosNombreTienda(entrada, t);
             llenarScrollPanel();
         }
     }
-    private void comboOrdenItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboOrdenItemStateChanged
-        insertarPaneles(comboOrden.getSelectedIndex());
-    }//GEN-LAST:event_comboOrdenItemStateChanged
-
     private void comboTipoBItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboTipoBItemStateChanged
         realizarBusqueda(textEntrada.getText());
     }//GEN-LAST:event_comboTipoBItemStateChanged
@@ -291,24 +276,18 @@ public class inventarioBuscar extends javax.swing.JPanel {
             paneles.add(i, new PanelProducto(busquedaProductos.get(i)));
             paneles.get(i).setBounds((0), ((i * 53)), 932, 52);
         }
-        insertarPaneles(comboOrden.getSelectedIndex());
+        insertarPaneles();
     }
 
-    private void insertarPaneles(int opcion) {
-        if (opcion == 0) {
+    private void insertarPaneles() {
+        if (paneles != null) {
             for (PanelProducto panele : paneles) {
                 panelBuscarInventario.add(panele);
                 panele.setVisible(true);
             }
-            panelBuscarInventario.repaint();
-        } else {
-            for (int i = paneles.size() - 1; i >= 0; i--) {
-                panelBuscarInventario.add(paneles.get(i));
-                paneles.get(i).setVisible(true);
-            }
+            panelBuscarInventario.setPreferredSize(new Dimension(932, 53 * paneles.size()));
             panelBuscarInventario.repaint();
         }
-        panelBuscarInventario.setPreferredSize(new Dimension(932, 53 * paneles.size()));
     }
 
     private void quitarPaneles() {
@@ -318,7 +297,6 @@ public class inventarioBuscar extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> comboOrden;
     private javax.swing.JComboBox<String> comboTiendas;
     private javax.swing.JComboBox<String> comboTipoB;
     private javax.swing.JButton jButton1;
@@ -326,7 +304,6 @@ public class inventarioBuscar extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;

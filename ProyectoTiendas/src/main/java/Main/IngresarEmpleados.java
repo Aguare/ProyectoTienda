@@ -3,6 +3,7 @@ package Main;
 import BInstancias.Tienda;
 import BManejadores.ConsultasOtros;
 import BManejadores.Sesion;
+import GUIAdmin.GUICargaArchivos;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -24,9 +25,16 @@ public class IngresarEmpleados extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         tiendas = consultas.ObtenerTiendas();
-        for (Tienda tienda : tiendas) {
-            comboTiendas.addItem(tienda.getCodTienda() + ",\t" + tienda.getNombre());
+        if (tiendas.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Tu Base de datos está vacía, debes cargar un archivo de texto para llenarla", "Cargar Archivo", JOptionPane.INFORMATION_MESSAGE);
+            GUICargaArchivos carga = new GUICargaArchivos();
+            carga.setVisible(true);
+        } else {
+            for (Tienda tienda : tiendas) {
+                comboTiendas.addItem(tienda.getCodTienda() + ",\t" + tienda.getNombre());
+            }
         }
+
     }
 
     /**
@@ -134,7 +142,7 @@ public class IngresarEmpleados extends javax.swing.JFrame {
                 InicioAdmin principal = new InicioAdmin(tiendas.get(comboTiendas.getSelectedIndex()));
                 principal.setVisible(true);
                 this.dispose();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Debe seleccionar una tienda para poder trabajar", "Error de Tienda", JOptionPane.ERROR_MESSAGE);
             }
         } else {

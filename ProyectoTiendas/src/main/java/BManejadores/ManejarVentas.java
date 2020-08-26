@@ -31,7 +31,7 @@ public class ManejarVentas {
         int mes = fecha.get(Calendar.MONTH);
         int dia = fecha.get(Calendar.DAY_OF_MONTH);
         String f = "" + a + "-" + mes + "-" + dia;
-        String query = "INSERT INTO Venta (fecha, totalVenta, Tienda_codTienda, Empleado_codEmpleado, LidListaProductos) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Venta (fecha, totalVenta, Tienda_codTienda, Empleado_codEmpleado, LidListaProductos, cliente_NIT) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             Connection connection = Sesion.Conexion();
             try (PreparedStatement preSt = connection.prepareStatement(query)) {
@@ -41,6 +41,7 @@ public class ManejarVentas {
                 preSt.setString(3, "" + tienda.getCodTienda());
                 preSt.setString(4, "" + empleado.getCodEmpleado());
                 preSt.setString(5, "" + lista.getIdListaProductos());
+                preSt.setString(6, cliente.getNIT());
 
                 preSt.executeUpdate();
                 connection.close();

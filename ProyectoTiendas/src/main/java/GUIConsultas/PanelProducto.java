@@ -110,7 +110,8 @@ public class PanelProducto extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
-        EditarProducto ed = new EditarProducto(null, false, producto);
+        EditarProducto ventana = new EditarProducto(null, true, this.producto);
+        ventana.setVisible(true);
     }//GEN-LAST:event_buttonEditarActionPerformed
 
 

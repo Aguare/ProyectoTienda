@@ -109,4 +109,28 @@ public class ConsultasCliente {
         }
         return false;
     }
+
+    public boolean insertarClienteArch(String NIT, String nombre, String telefono, String credio) {
+        String query = "INSERT INTO Cliente (NIT, nombre, telefono, credito) VALUES (?, ?, ?, ?)";
+
+        try {
+            Connection connection = Sesion.Conexion();
+            try (PreparedStatement preSt = connection.prepareStatement(query)) {
+
+                preSt.setString(1, NIT);
+                preSt.setString(2, nombre);
+                preSt.setString(3, telefono);
+                preSt.setString(4, credio);
+                preSt.executeUpdate();
+                return true;
+            } catch (SQLException e) {
+//                JOptionPane.showMessageDialog(null, "Error en Consulta Clientes", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+                System.out.println(e.getMessage());
+            }
+            connection.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en Consulta Clientes", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+        }
+        return false;
+    }
 }

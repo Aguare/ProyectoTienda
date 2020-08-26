@@ -64,6 +64,33 @@ public class ConsultasProducto {
         return cantidad;
     }
 
+    public ArrayList<Object[]> ObtenerListaProductos(String id) {
+        String query = "SELECT * FROM ListaP WHERE LidListaProductos = ?";
+        ArrayList<Object[]> lista = new ArrayList<>();
+        try {
+            Connection connection = Sesion.Conexion();
+            try (PreparedStatement preSt = connection.prepareStatement(query)) {
+
+                preSt.setString(1, id);
+                ResultSet result = preSt.executeQuery();
+                Object[] linea = new Object[3];
+                while (result.next()) {
+                    linea[0] = result.getString("ProductoidProducto");
+                    linea[1] = result.getString("cantidad");
+                    linea[2] = result.getString("totalParcial");
+                }
+                lista.add(linea);
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar Consulta", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+            }
+            connection.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al realizar Consulta", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+        }
+        return lista;
+    }
+
     public ArrayList ObtenerProductosNombre(String busqueda) {
         String query = "SELECT * FROM Producto WHERE nombre LIKE ?";
         ArrayList<Producto> lista = new ArrayList();
@@ -77,6 +104,31 @@ public class ConsultasProducto {
                 while (result.next()) {
                     lista.add(new Producto(result.getString(1), result.getString(2), CantidadProductosGeneral(result.getString(1)),
                             result.getDouble(3), result.getString(4), result.getInt(5), result.getString(6)));
+                }
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar Consulta", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+            }
+            connection.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al realizar Consulta", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+        }
+        return lista;
+    }
+
+    public Producto ObtenerProductoCodigo(String busqueda) {
+        String query = "SELECT * FROM Producto WHERE idProducto = ?";
+        Producto lista = null;
+        try {
+            Connection connection = Sesion.Conexion();
+            try (PreparedStatement preSt = connection.prepareStatement(query)) {
+
+                preSt.setString(1, busqueda + "%");
+                ResultSet result = preSt.executeQuery();
+
+                while (result.next()) {
+                    lista = new Producto(result.getString(1), result.getString(2), CantidadProductosGeneral(result.getString(1)),
+                            result.getDouble(3), result.getString(4), result.getInt(5), result.getString(6));
                 }
 
             } catch (SQLException e) {
@@ -260,4 +312,77 @@ public class ConsultasProducto {
         }
         return false;
     }
+
+    public boolean insertarProducto(String codProducto, String nombre, String precio, String descripcion, String garantia, String fabricante, String cantidad, String tienda) {
+        String query = "INSERT INTO Producto VALUES (?, ?, ?, ?, ?, ?)";
+        insertarFabricante(fabricante);
+        try {
+            Connection connection = Sesion.Conexion();
+            try (PreparedStatement preSt = connection.prepareStatement(query)) {
+
+                preSt.setString(1, codProducto);
+                preSt.setString(2, nombre);
+                preSt.setString(3, precio);
+                preSt.setString(4, descripcion);
+                preSt.setString(5, garantia);
+                preSt.setString(6, fabricante);
+                preSt.executeUpdate();
+                if (!cantidad.equals("") && !tienda.equals("")) {
+                    insertarEnTienda(codProducto, tienda, cantidad);
+                }
+                return true;
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al insertar Producto", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+                System.out.println(e.getMessage());
+            }
+            connection.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al insertar Producto", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+        }
+        return false;
+    }
+
+    public boolean insertarEnTienda(String codProducto, String codTienda, String cantidad) {
+        String query = "INSERT INTO ProductosEnTienda VALUES (?,?,?)";
+        try {
+            Connection connection = Sesion.Conexion();
+            try (PreparedStatement preSt = connection.prepareStatement(query)) {
+
+                preSt.setString(1, codProducto);
+                preSt.setString(2, codTienda);
+                preSt.setString(3, cantidad);
+                preSt.executeUpdate();
+                return true;
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al insertar Tienda", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+                System.out.println(e.getMessage());
+            }
+            connection.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al insertar Tienda", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+        }
+        return false;
+    }
+
+    public void insertarFabricante(String fabricante) {
+        String query = "INSERT INTO Fabricante VALUES (?)";
+
+        try {
+            Connection connection = Sesion.Conexion();
+            try (PreparedStatement preSt = connection.prepareStatement(query)) {
+
+                preSt.setString(1, fabricante);
+
+                preSt.executeUpdate();
+
+            } catch (SQLException e) {
+
+            }
+            connection.close();
+        } catch (SQLException e) {
+
+        }
+
+    }
+
 }
