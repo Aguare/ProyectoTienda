@@ -80,7 +80,7 @@ public class ConsultasProducto {
                     linea[2] = result.getString("totalParcial");
                     lista.add(linea);
                 }
-                
+
 
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error al realizar Consulta", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
