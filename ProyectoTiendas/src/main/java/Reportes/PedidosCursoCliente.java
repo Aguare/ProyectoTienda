@@ -165,8 +165,8 @@ public class PedidosCursoCliente extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
-        int numero = tabla.getSelectedColumn();
-        if (numero > 0) {
+        int numero = tabla.getSelectedRow();
+        if (numero >= 0) {
             String valor = (String) modelo.getValueAt(numero, 8);
             VerProductos nuevo = new VerProductos(valor);
             nuevo.setVisible(true);

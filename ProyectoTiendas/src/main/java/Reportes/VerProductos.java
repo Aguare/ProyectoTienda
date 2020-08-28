@@ -45,7 +45,7 @@ public class VerProductos extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         LabelTotal = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setBackground(new java.awt.Color(0, 153, 255));
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -56,10 +56,7 @@ public class VerProductos extends javax.swing.JFrame {
 
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Producto", "Cantidad", "Sub-Total"

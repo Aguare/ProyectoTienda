@@ -29,6 +29,7 @@ public class IngresarEmpleados extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Tu Base de datos está vacía, debes cargar un archivo de texto para llenarla", "Cargar Archivo", JOptionPane.INFORMATION_MESSAGE);
             GUICargaArchivos carga = new GUICargaArchivos();
             carga.setVisible(true);
+            this.dispose();
         } else {
             for (Tienda tienda : tiendas) {
                 comboTiendas.addItem(tienda.getCodTienda() + ",\t" + tienda.getNombre());

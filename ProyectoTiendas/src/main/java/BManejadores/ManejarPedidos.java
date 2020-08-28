@@ -20,10 +20,14 @@ public class ManejarPedidos {
         if (n != -1) {
             registrarListaP(n, articulo, cantidad, total);
             actualizarTotal(total, n + "");
+            return true;
         } else {
             int idLista = registrarListaProductos(total);
             ConsultasOtros otros = new ConsultasOtros();
             int idTiempo = otros.buscarTiempo(tiendaOrigen, tiendaLlegada);
+            if (idTiempo == 0) {
+                idTiempo = otros.buscarTiempo(tiendaLlegada, tiendaOrigen);
+            }
             registrarListaP(idLista, articulo, cantidad, total);
             try {
                 Connection connection = Sesion.Conexion();
@@ -42,8 +46,9 @@ public class ManejarPedidos {
 
                     preSt.executeUpdate();
                     connection.close();
+                    return true;
                 } catch (SQLException e) {
-
+                    System.out.println(e.getMessage());
                     return false;
                 }
             } catch (HeadlessException e) {
@@ -102,7 +107,6 @@ public class ManejarPedidos {
 
     private int buscarPedido(String codPedido) {
         String query = "SELECT * FROM Pedido WHERE codPedido = ?";
-        String cod = "";
         int numeroLista = -1;
         try {
             Connection connection = Sesion.Conexion();
@@ -112,7 +116,6 @@ public class ManejarPedidos {
                 ResultSet result = preSt.executeQuery();
 
                 while (result.next()) {
-                    cod = result.getString("codPedido");
                     numeroLista = result.getInt("LidListaProductos");
                 }
 

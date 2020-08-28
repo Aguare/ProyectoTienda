@@ -206,7 +206,6 @@ public class ConsultasOtros {
 
     public boolean insertarEmpleados(String codEmpleado, String nombre, String DPI, String telefono, String NIT, String correo, String direccion) {
         String query = "INSERT INTO Empleado (codEmpleado, nombre, DPI, telefono, NIT, correo, direccion) VALUES (?,?,?,?,?,?,?)";
-
         try {
             Connection connection = Sesion.Conexion();
             try (PreparedStatement preSt = connection.prepareStatement(query)) {
@@ -220,14 +219,15 @@ public class ConsultasOtros {
                 preSt.setString(7, direccion);
 
                 preSt.executeUpdate();
-                insertarUsuario(codEmpleado, codEmpleado + "ps", codEmpleado);
+                preSt.close();
+                connection.close();
+                insertarUsuario(codEmpleado, codEmpleado, codEmpleado);
                 return true;
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al insertar Tiempo", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
             }
             connection.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al insertar Tiempo", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al insertar Empleado", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
         }
         return false;
     }
@@ -245,11 +245,9 @@ public class ConsultasOtros {
 
                 preSt.executeUpdate();
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al insertar Tiempo", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
             }
             connection.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al insertar Tiempo", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

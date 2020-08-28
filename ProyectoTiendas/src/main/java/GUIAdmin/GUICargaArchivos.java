@@ -6,6 +6,7 @@
 package GUIAdmin;
 
 import BManejadores.CargaArchivo;
+import Main.IngresarEmpleados;
 import java.util.ArrayList;
 
 /**
@@ -206,6 +207,8 @@ public class GUICargaArchivos extends javax.swing.JFrame {
 
     private void buttonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAceptarActionPerformed
         this.dispose();
+        IngresarEmpleados nuevo = new IngresarEmpleados();
+        nuevo.setVisible(true);
     }//GEN-LAST:event_buttonAceptarActionPerformed
 
 

@@ -228,7 +228,7 @@ public class CargaArchivo {
 
     private void insertarEmpleados() {
         for (ArrayList<String> a : Empleado) {
-            boolean aceptado = otros.insertarEmpleados(a.get(1), a.get(0), a.get(3), a.get(2), "0", "", "");
+            boolean aceptado = otros.insertarEmpleados(a.get(1), a.get(0), a.get(3), a.get(2), "0", "-", "-");
             if (aceptado) {
                 aceptados.add("EMPLEADO-> " + a.get(1) + " " + a.get(0) + " " + a.get(3) + " " + a.get(2));
             } else {

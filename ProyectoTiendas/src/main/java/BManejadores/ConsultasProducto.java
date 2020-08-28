@@ -66,7 +66,7 @@ public class ConsultasProducto {
 
     public ArrayList<Object[]> ObtenerListaProductos(String id) {
         String query = "SELECT * FROM ListaP WHERE LidListaProductos = ?";
-        ArrayList<Object[]> lista = new ArrayList<>();
+        ArrayList<Object[]> lista = new ArrayList();
         try {
             Connection connection = Sesion.Conexion();
             try (PreparedStatement preSt = connection.prepareStatement(query)) {
@@ -78,8 +78,9 @@ public class ConsultasProducto {
                     linea[0] = result.getString("ProductoidProducto");
                     linea[1] = result.getString("cantidad");
                     linea[2] = result.getString("totalParcial");
+                    lista.add(linea);
                 }
-                lista.add(linea);
+                
 
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error al realizar Consulta", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
@@ -123,7 +124,7 @@ public class ConsultasProducto {
             Connection connection = Sesion.Conexion();
             try (PreparedStatement preSt = connection.prepareStatement(query)) {
 
-                preSt.setString(1, busqueda + "%");
+                preSt.setString(1, busqueda);
                 ResultSet result = preSt.executeQuery();
 
                 while (result.next()) {
@@ -132,11 +133,11 @@ public class ConsultasProducto {
                 }
 
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar Consulta", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+
             }
             connection.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al realizar Consulta", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+
         }
         return lista;
     }
@@ -316,28 +317,33 @@ public class ConsultasProducto {
     public boolean insertarProducto(String codProducto, String nombre, String precio, String descripcion, String garantia, String fabricante, String cantidad, String tienda) {
         String query = "INSERT INTO Producto VALUES (?, ?, ?, ?, ?, ?)";
         insertarFabricante(fabricante);
-        try {
-            Connection connection = Sesion.Conexion();
-            try (PreparedStatement preSt = connection.prepareStatement(query)) {
+        Producto producto = ObtenerProductoCodigo(codProducto);
+        if (producto != null) {
+            return insertarEnTienda(codProducto, tienda, cantidad);
+        } else {
+            try {
+                Connection connection = Sesion.Conexion();
+                try (PreparedStatement preSt = connection.prepareStatement(query)) {
 
-                preSt.setString(1, codProducto);
-                preSt.setString(2, nombre);
-                preSt.setString(3, precio);
-                preSt.setString(4, descripcion);
-                preSt.setString(5, garantia);
-                preSt.setString(6, fabricante);
-                preSt.executeUpdate();
-                if (!cantidad.equals("") && !tienda.equals("")) {
-                    insertarEnTienda(codProducto, tienda, cantidad);
+                    preSt.setString(1, codProducto);
+                    preSt.setString(2, nombre);
+                    preSt.setString(3, precio);
+                    preSt.setString(4, descripcion);
+                    preSt.setString(5, garantia);
+                    preSt.setString(6, fabricante);
+                    preSt.executeUpdate();
+                    if (!cantidad.equals("") && !tienda.equals("")) {
+                        insertarEnTienda(codProducto, tienda, cantidad);
+                    }
+                    return true;
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al insertar Producto", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
+                    System.out.println(e.getMessage());
                 }
-                return true;
+                connection.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error al insertar Producto", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
-                System.out.println(e.getMessage());
             }
-            connection.close();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al insertar Producto", "Error de Consulta", JOptionPane.ERROR_MESSAGE);
         }
         return false;
     }
